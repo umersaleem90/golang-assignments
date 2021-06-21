@@ -9,11 +9,6 @@ import (
 	"golang.org/x/net/html"
 )
 
-type LinkData struct {
-	Href string
-	Text string
-}
-
 func ParseHtml(fileName string) LinkData{
     filePath := "htmlParser/" + fileName
 	file, error := ioutil.ReadFile(filePath)

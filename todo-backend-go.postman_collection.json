@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "255a8bc5-49d1-429b-9ef6-49331bca52e3",
+		"name": "todo-backend-go",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTcsImV4cCI6MTYyNDc2MzA5MH0.eom9R4L3eh6LaJIw1ZCyZOdDb8WeRk417hToIc1nNM4",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"umer1@umer.com\",\n    \"password\": \"123123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/login"
+			},
+			"response": []
+		},
+		{
+			"name": "SignUp",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTcsImV4cCI6MTYyNDc2MzA5MH0.eom9R4L3eh6LaJIw1ZCyZOdDb8WeRk417hToIc1nNM4",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"umer2@umer.com\",\n    \"password\": \"123123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/signUp"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Task",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MSwiZXhwIjoxNjI0Nzc2MTg1fQ.9drCheFkcbVImeraJNMukf8V3ooW657o4dyeYbufRLk",
+						"type": "text"
+					}
+				],
+				"url": "http://localhost:3000/v1/api/tasks/6"
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllUserTasks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiZXhwIjoxNjI0Nzc3ODAyfQ.Z3B7TX1XPKjvJJC6v-WjnGLa-buX1mEE99FWkXHhik8",
+						"type": "text"
+					}
+				],
+				"url": "http://localhost:3000/v1/api/tasks"
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateTask",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MSwiZXhwIjoxNjI0Nzc2MTg1fQ.9drCheFkcbVImeraJNMukf8V3ooW657o4dyeYbufRLk",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"this is my description\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/v1/api/tasks/11"
+			},
+			"response": []
+		},
+		{
+			"name": "CreateTask",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiZXhwIjoxNjI0Nzc3ODAyfQ.Z3B7TX1XPKjvJJC6v-WjnGLa-buX1mEE99FWkXHhik8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"task title 123\",\n    \"description\": \"some desc 123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/v1/api/tasks"
+			},
+			"response": []
+		},
+		{
+			"name": "CreateTaskWithEmail",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"task with email\",\n    \"description\": \"some desc with email\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/v1/api/tasks"
+			},
+			"response": []
+		}
+	]
+}

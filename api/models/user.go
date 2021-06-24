@@ -8,13 +8,21 @@ import (
 
 type User struct {
 	gorm.Model
-	Email 		string `json:"email" gorm:"not null; unique"`
-	Password 	string `json:"password" gorm:"not null"`
+	Email 				string 	`json:"email" gorm:"not null; unique"`
+	Password 			string 	`json:"password" gorm:"not null"`
+	IsDummyUser		bool 		`json:"isDummyUser" gorm:"default:false"`
 }
 
 func (user *User) CreateUser(db *gorm.DB) error {
-	response := db.Where("email = ?", user.Email).First(&user)
+	var password string = user.Password
+	response := db.Where(&User{Email: user.Email}).First(&user)
 	if response.Error == nil {
+		if user.IsDummyUser {
+			user.IsDummyUser = false
+			user.Password = password
+			db.Save(&user)
+			return nil
+		}
 		return errors.New("User already existed")
 	}
 	response = db.Create(&user)

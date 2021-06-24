@@ -1,6 +1,8 @@
 package main
 
-import "todo-backend/api/controllers"
+import (
+	"todo-backend/api/controllers"
+)
 
 func main() {
 	controllers.Start()

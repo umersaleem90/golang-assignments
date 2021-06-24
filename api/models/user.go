@@ -2,6 +2,7 @@ package models
 
 import (
 	"errors"
+	"todo-backend/utilities"
 
 	"gorm.io/gorm"
 )
@@ -30,6 +31,11 @@ func (user *User) CreateUser(db *gorm.DB) error {
 }
 
 func (user *User) GetUserWithEmailPassword(db *gorm.DB) error {
-	response := db.Where(&User{Email: user.Email, Password: user.Password}).First(&user)
-	return response.Error
+	var password string = user.Password
+	response := db.Where(&User{Email: user.Email}).First(&user)
+	if response.Error != nil {
+		return response.Error
+	}
+	err := utilities.ComparePasswordHash(password, user.Password)
+	return err
 }

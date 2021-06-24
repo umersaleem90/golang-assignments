@@ -16,7 +16,14 @@ func SignUp(w http.ResponseWriter, r *http.Request) {
 		response.WriteError(w, http.StatusBadRequest, errors.New("invalid email"))
 		return
 	}
-	err := user.CreateUser(DB)
+
+	passwordHash, err := utilities.HashPassword(user.Password)
+	if err != nil {
+		response.WriteError(w, http.StatusBadRequest, errors.New("invalid email"))
+		return
+	}
+	user.Password = passwordHash
+	err = user.CreateUser(DB)
 	if err != nil {
 		response.WriteError(w, http.StatusBadRequest, err)
 		return
@@ -31,6 +38,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		response.WriteError(w, http.StatusBadRequest, errors.New("invalid email"))
 		return
 	}
+
 	err := user.GetUserWithEmailPassword(DB)
 	if err != nil {
 		response.WriteError(w, http.StatusBadRequest, err)
@@ -40,5 +48,6 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		response.WriteError(w, http.StatusInternalServerError, err)
 	}
+	user.Password = "" //setting password empty for response json
 	json.NewEncoder(w).Encode(map[string]interface{}{"user": user, "token": token})
 }

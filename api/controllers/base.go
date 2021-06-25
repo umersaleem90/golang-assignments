@@ -24,11 +24,12 @@ func createDSN() string {
   if err != nil {
     log.Fatal("Error loading .env file")
   }
-	host := os.Getenv("DBHOST")
-	user := os.Getenv("DBUSER")
-	password := os.Getenv("DBPASSWORD")
-  dbname := os.Getenv("DBNAME")
-	port := os.Getenv("DBPORT")
+
+	host := os.Getenv("DB_HOST")
+	user := os.Getenv("POSTGRES_USER")
+	password := os.Getenv("POSTGRES_PASSWORD")
+  dbname := os.Getenv("POSTGRES_DB")
+	port := os.Getenv("POSTGRES_PORT")
 	return fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable", host, user, password, dbname, port)
 }
 
@@ -57,7 +58,7 @@ func initializeRoutes() {
 	subRouter.HandleFunc("/tasks/{id:[0-9]+}", EditTask).Methods("PUT")
 	subRouter.HandleFunc("/tasks/{id:[0-9]+}", DeleteTask).Methods("DELETE")
 
-	port := fmt.Sprintf(":%s", os.Getenv("SERVERPORT"))
+	port := fmt.Sprintf(":%s", os.Getenv("SERVER_PORT"))
 	log.Println("Server starting on port", port)
 	log.Fatal(http.ListenAndServe(port, Router))
 }
